@@ -85,13 +85,24 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>No.</th>
                                     <th>Full Name</th>
                                     <th>Username</th>
                                     <th>Email</th>
                                     <th>Role</th>
                                 </tr>
                             </thead>
+
+                            <tbody>
+                                    <tr>
+                                        <td>{{ $user->id }}</td>
+                                        <td>{{ $user->fullName }}</td>
+                                        <td>{{ $user->userName }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        <td>{{ $user->role }}</td>
+
+                                    </tr>
+
+                          </tbody>
                         </table>
 
 

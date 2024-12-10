@@ -30,14 +30,13 @@ class HomeController extends Controller
         $category = Category::all();
         $user = User::all();
         $user = Auth::user();
-        $uuid = $user->id;
-        $umkm = Umkm::find($id);
-        $profile = User::where('id', $id)->get();
         $umkmCount = Umkm::all()->count();
         $culinary = Umkm::orderBy('id_user')->take(3)->get();
         $fashion = UMKM::where('category_id', 2)->get();
         $service = UMKM::where('category_id', 3)->get();
         $pageTitle = "Home";
+        $user = auth()->user();
+    $umkm = Umkm::where('id_user', $user->id)->get();
 
         return view('home', [
             'user' => $user,
@@ -48,7 +47,6 @@ class HomeController extends Controller
             'fashion' => $fashion,
             'service' => $service,
             'pageTitle' => $pageTitle,
-            'profile' => $profile,
         ]);
     }
 

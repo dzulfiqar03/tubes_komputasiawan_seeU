@@ -98,6 +98,29 @@
                                     <th></th>
                                 </tr>
                             </thead>
+
+                            <tbody>
+                                @foreach ($umkm as $umkms)
+                                    <tr>
+                                        <td>{{ $umkms->id }}</td>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $umkms->umkm }}</td>
+                                        <td>{{ $umkms->description }}</td>
+                                        <td>{{ $umkms->email }}</td>
+                                        <td>{{ $umkms->telp_number }}</td>
+                                        <td>{{ $umkms->category->name }}</td> <td>
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editData{{ $umkms->id }}">
+                                                Edit
+                                            </button>
+                                            <form action="{{ route('umkm.destroy', $umkms->id) }}" method="POST" style="display: inline-block;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
                         </table>
 
 
@@ -108,66 +131,6 @@
     </div>
 
 
-    @foreach ($umkm as $dataUmkm)
-        <div class="d-grid gap-2 text-start">
-            <div class="modal fade" id="showData{{ $dataUmkm->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="p-3">
-                            <div class="mb-3 text-center">
-                                <i class="bi-person-circle fs-1"></i>
-                                <h4>Detail data Umkm</h4>
-                            </div>
-                            <hr>
-                            <div class="col">
-                                <div class="col-md-4 mb-3">
-                                    <label for="umkm" class="form-label">UMKM</label>
-                                    <h5>{{ $dataUmkm->umkm }}</h5>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <label for="description" class="form-label">Description</label>
-                                    <h5>{{ $dataUmkm->description }}</h5>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <label for="email" class="form-label">Email</label>
-                                    <h5>{{ $dataUmkm->email }}</h5>
-                                </div>
-                                <div class="col-md-12 mb-3">
-                                    <label for="address" class="form-label">Address</label>
-                                    <h5>{{ $dataUmkm->address }}</h5>
-                                </div>
-                                <div class="col-md-12 mb-3">
-                                    <label for="age" class="form-label">Category</label>
-                                    <h5>{{ $dataUmkm->category->name }}</h5>
-                                </div>
-                                <div class="col-md-12 mb-3">
-                                    <label for="age" class="form-label">Surat Izin Mendirikan Usaha</label>
-                                    @if ($dataUmkm->original_filesname)
-                                        <h5>{{ $dataUmkm->original_filesname }}</h5>
-                                        <a href="{{ route('admin.downloadFile', ['umkmId' => $dataUmkm->id]) }}"
-                                            class="btn btn-primary btn-sm mt-2">
-                                            <i class="bi bi-download me-1"></i> Download CV
-                                        </a>
-                                    @else
-                                        <h5>Tidak ada</h5>
-                                    @endif
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="col-md-12 d-grid">
-                                <a href="{{ route('dataUmkm') }}" class="btn btn-outline-dark btn-lg mt-3"><i
-                                        class="bi-arrow-left-circle me-2"></i> Back</a>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    @endforeach
 
     @foreach ($umkm as $dataUmkm)
         <div class="d-grid gap-2 text-start">

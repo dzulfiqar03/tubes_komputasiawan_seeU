@@ -126,11 +126,11 @@
                             <div class="sub-body1">
                                 <div class="text-center item2">
                                     <div class="row product-list2 w-100">
-                                        @if ($culinary->isEmpty())
+                                    @if ($umkm->isEmpty())
                                         <p>Kosong</p>
                                     @endif
 
-                                        @foreach ($culinary as $umkms)
+                                        @foreach ($umkm as $umkms)
                                                 <div class="col items" style="flex:0">
                                                     <a class="text-decoration-none"
                                                         href="{{ route('detail', ['id' => $umkms->id]) }}">

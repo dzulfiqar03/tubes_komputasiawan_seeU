@@ -16,7 +16,13 @@ class dataUmkmController extends Controller
         $pageTitle = "Data UMKM";
 
 
-        return view('umkm.data_umkm', compact('category','umkm', 'pageTitle'));
+        return view('umkm.data_umkm', [
+            'category' => $category,
+            'umkm' => $umkm,
+            'pageTitle' => $pageTitle,
+        ]);
+
+        
 
     }
 }
