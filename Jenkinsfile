@@ -1,5 +1,8 @@
 pipeline {
     agent any
+	tools {
+        ansible 'ansible'
+    }
     stages {
         stage('Checkout') {
             steps {
