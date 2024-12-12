@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t seeU_website .'
+                sh 'docker compose -f "docker-compose.yml" up -d --build'
             }
         }
         stage('Push Image to Docker Hub') {
