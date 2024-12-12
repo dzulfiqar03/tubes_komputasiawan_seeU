@@ -9,7 +9,7 @@ pipeline {
         stage('Send Dockerfile to Ansible') {
             steps {
                 script {
-                    ansiblePlaybook playbook: 'copy_dockerfile.yml', inventories: 'inventory.ini'
+                    ansiblePlaybook playbook: 'copy_dockerfile.yml'
                 }
             }
         }
