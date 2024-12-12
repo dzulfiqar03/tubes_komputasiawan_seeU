@@ -6,9 +6,16 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/dzulfiqar03/tubes_komputasiawan_seeU.git'
             }
         }
+        stage('Send Dockerfile to Ansible') {
+            steps {
+                script {
+                    ansiblePlaybook playbook: 'copy_dockerfile.yml', inventories: 'inventory.ini'
+                }
+            }
+        }
         stage('Build Docker Image') {
             steps {
-                sh 'docker compose -f "docker-compose.yml" up -d --build'
+                sh 'docker build -t seeU_website .'
             }
         }
         stage('Push Image to Docker Hub') {
