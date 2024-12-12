@@ -9,7 +9,7 @@ pipeline {
         stage('Send Dockerfile to Ansible') {
             steps {
                 script {
-                    ansiblePlaybook credentialsId: 'seeU_website', installation: 'Ansible', playbook: 'copy_dockerfile.yml', vaultTmpPath: ''
+                    ansiblePlaybook installation: 'Ansible', playbook: 'copy_dockerfile.yml'
                 }
             }
         }
