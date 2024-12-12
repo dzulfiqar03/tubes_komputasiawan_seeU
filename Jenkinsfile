@@ -6,16 +6,10 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/dzulfiqar03/tubes_komputasiawan_seeU.git'
             }
         }
-		stage('Install Dependencies') {
-            steps {
-                sh 'ansible-galaxy install -r requirements.yml'
-            }
-        }
-
         stage('Send Dockerfile to Ansible') {
 			steps {
                 echo 'Executing Ansible Playbook'
-                ansiblePlaybook colorized: true, credentialsId: 'seeU_website', inventory: 'hosts',extras: '-e host_group=\"tag_${TagKey}_${TagValue}\"', playbook: 'playbook/copy_dockerfile.yaml'
+                ansiblePlaybook colorized: true, credentialsId: 'seeU_website', inventory: 'hosts', playbook: 'playbook/copy_dockerfile.yaml'
             }
         }
         stage('Build Docker Image') {
