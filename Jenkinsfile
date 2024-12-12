@@ -1,7 +1,8 @@
 pipeline {
     agent any
-	tools {
+    tools {
         ansible 'ansible-2.9'
+        docker 'docker-19.03.1'
     }
     stages {
         stage('Checkout') {
