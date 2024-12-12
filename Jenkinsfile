@@ -10,10 +10,9 @@ pipeline {
             }
         }
         stage('Send Dockerfile to Ansible') {
-            steps {
-                script {
-                    ansiblePlaybook installation: 'Ansible', playbook: 'copy_dockerfile.yml'
-                }
+			steps {
+                echo 'Executing Ansible Playbook'
+                ansiblePlaybook colorized: true, credentialsId: 'seeU_website', inventory: 'hosts',extras: '-e host_group=\"tag_${TagKey}_${TagValue}\"', playbook: 'playbook/copy_dockerfile.yaml'
             }
         }
         stage('Build Docker Image') {
