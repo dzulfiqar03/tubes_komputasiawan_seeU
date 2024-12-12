@@ -9,7 +9,7 @@ pipeline {
         stage('Send Dockerfile to Ansible') {
 			steps {
                 echo 'Executing Ansible Playbook'
-                ansiblePlaybook colorized: true, credentialsId: 'seeU_website', inventory: 'hosts', playbook: 'playbook/copy_dockerfile.yaml'
+                ansiblePlaybook colorized: true, inventory: 'hosts', playbook: 'playbook/copy_dockerfile.yaml'
             }
         }
         stage('Build Docker Image') {
