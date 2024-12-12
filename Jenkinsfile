@@ -9,8 +9,8 @@ pipeline {
         stage('Send Dockerfile to Ansible') {
             steps {
                 withCredentials([sshCredentials([id: 'seeU_website'])]) {
-                        sh 'ssh -o StrictHostKeyChecking=no seeU_website@ansible-server "mkdir -p ./Dockerfile"'
-                        sh 'scp -o StrictHostKeyChecking=no Dockerfile seeU_website@ansible_server:./Dockerfile'
+                        sh 'ssh -o StrictHostKeyChecking=no seeU_website@ansible-server "mkdir -p /Applications/XAMPP/xamppfiles/htdocs/Kuliah/Komputasi Awan/seeU_website/Dockerfile"'
+                        sh 'scp -o StrictHostKeyChecking=no Dockerfile seeU_website@ansible_server:/Applications/XAMPP/xamppfiles/htdocs/Kuliah/Komputasi Awan/seeU_website/Dockerfile'
                 }
             }
         }
