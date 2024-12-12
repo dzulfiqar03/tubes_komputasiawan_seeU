@@ -8,7 +8,14 @@ pipeline {
         }
         stage('Send Dockerfile to Ansible') {
             steps {
-                sh 'scp Dockerfile user@ansible-server:Dockerfile'
+                withCredentials([sshCredentials([id: 'seeU_website'])]) {
+                    try {
+                        sh 'ssh -o StrictHostKeyChecking=no user@ansible-server "mkdir -p Dockerfile"'
+                        sh 'scp -o StrictHostKeyChecking=no Dockerfile user@ansible_server:Dockerfile'
+                    } catch (Exception e) {
+                        error "Gagal terhubung ke server Ansible: ${e.message}"
+                    }
+                }
             }
         }
         stage('Build Docker Image') {
