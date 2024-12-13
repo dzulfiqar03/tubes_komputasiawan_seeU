@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools{
-        ansible 'ansible-2.18.1'
+        ansible 'Ansible-2.18.1'
         docker 'docker-27.2.0'
     }
     stages {
