@@ -1,14 +1,24 @@
 pipeline {
     agent any
+    tools{
+        ansible 'ansible-2.18.1'
+        docker 'docker-27.2.0'
+    }
     stages {
         stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/dzulfiqar03/tubes_komputasiawan_seeU.git'
             }
         }
+        stage('Send Dockerfile to Ansible') {
+			steps {
+                echo 'Executing Ansible Playbook'
+                ansiblePlaybook credentialsId: 'seeU_website', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'ansible-project/playbook/hosts', playbook: 'ansible-project/playbook/copy_dockerfile.yml', vaultTmpPath: ''
+            }
+        }
         stage('Build Docker Image') {
             steps {
-                sh 'docker run seeU_website'
+                sh 'docker build -t seeU_website .'
             }
         }
         stage('Push Image to Docker Hub') {
