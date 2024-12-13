@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t seeU_website .'
+                sh 'docker run seeU_website'
             }
         }
         stage('Push Image to Docker Hub') {
