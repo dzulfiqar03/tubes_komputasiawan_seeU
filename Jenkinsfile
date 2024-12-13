@@ -6,14 +6,20 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/dzulfiqar03/tubes_komputasiawan_seeU.git'
             }
         }
-        stage('Build') {
+        stage('Send Dockerfile to Ansible') {
             steps {
-                sh 'docker build . -t node-todo-app'
+                echo 'Executing Ansible Playbook'
+                ansiblePlaybook credentialsId: 'seeU_website', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'ansible-project/playbook/hosts', playbook: 'ansible-project/playbook/copy_dockerfile.yml', vaultTmpPath: ''
             }
         }
-        stage('Run') {
+        stage('Build Docker Image') {
             steps {
-                sh 'docker run -d -p 8000:8000 --name node-todo-app node-todo-app'
+                sh 'docker build -t seeU_website .'
+            }
+        }
+        stage('Push Image to Docker Hub') {
+            steps {
+                sh 'docker push seeU_website'
             }
         }
         stage('Copy Files to Kubernetes') {
