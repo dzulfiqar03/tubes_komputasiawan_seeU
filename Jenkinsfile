@@ -9,7 +9,7 @@ pipeline {
         stage('Send Dockerfile to Ansible') {
 			steps {
                 echo 'Executing Ansible Playbook'
-                ansiblePlaybook credentialsId: 'seeU_website', inventory: 'hosts', playbook: 'playbook/copy_dockerfile.yml'
+                ansiblePlaybook credentialsId: 'seeU_website', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'ansible-project/playbook/hosts', playbook: 'ansible-project/playbook/copy_dockerfile.yml', vaultTmpPath: ''
             }
         }
         stage('Build Docker Image') {
