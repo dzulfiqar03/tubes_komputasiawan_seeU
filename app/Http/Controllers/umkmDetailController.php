@@ -17,8 +17,14 @@ class umkmDetailController extends Controller
             return abort(404);
         }
 
+        $pageTitle = "UMKM Detail";
 
-        return view('umkm.umkm_detail', compact('umkm' , 'idUmkm'));
+
+        return view('umkm.umkm_detail', [
+            'umkm' => $umkm,
+            'idUmkm' => $idUmkm,
+            'pageTitle' => $pageTitle,
+        ]);
     }
 
     public function show($id)
@@ -26,6 +32,4 @@ class umkmDetailController extends Controller
         $umkm = UMKM::findOrFail($id);
         return view('umkm.show', compact('umkm'));
     }
-
-
 }

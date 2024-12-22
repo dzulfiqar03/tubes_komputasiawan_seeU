@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>SeeU - Sistem Informasi UMKM</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+@extends('layouts.app')
+
+
+@section('content')
+
     <style>
         body {
             background-color: #ffffff;
@@ -89,15 +86,12 @@
             height: 500px;
         }
     </style>
-</head>
 
-<body>
-
-    @foreach ($umkm as $umkm)
+    <div class="bg-white h-screen">
+            @foreach ($umkm as $umkm)
         @if ($idUmkm == $umkm->id)
-            <div class="container-fluid container-custom my-5">
-                <div class="card mb-3">
-                    <div class="row no-gutters">
+                <div class="mb-3 px-5 pt-5">
+                    <div class="row">
                         <div class="col-md-6-custom">
                           
                             <img   src="{{ Storage::url('files/documentUser/profileUMKM/' . $umkm->original_photoname) }}"
@@ -141,11 +135,14 @@
                         </div>
                     </div>
                 </div>
-            </div>
         @endif
     @endforeach
 
-    @vite('resources/js/app.js')
-</body>
+    </div>
 
-</html>
+    @vite('resources/js/app.js')
+
+
+
+
+    @endsection

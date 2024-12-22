@@ -1,77 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>SeeU - Sistem Informasi UMKM</title>
-    <link rel="shortcut icon" href="/resources/images/Logo/mainLogo.png" type="image/svg+xml">
-
-    @vite('resources/sass/app.scss')
-    <link rel="shortcut icon" href="/resources/images/Logo/mainLogo.png" type="image/svg+xml">
-
-    <style>
-        body {
-            background-color: rgb(22, 22, 22);
-
-        }
-
-        .itemBtn {
-            width: max-content;
-            border: 0px
-        }
-    </style>
-</head>
-
-<body>
-
-    <div class="text-center">
-        <div class="d-flex">
-
-            <div class="leftContent p-2 gap-50 vh-100" id="leftContent">
-
-                <div class="topContent h-100">
-
-                    @if (Auth::check())
-                        <img class="mx-auto mb-5" src="{{ Vite::asset('resources/images/Logo/logo_verti.png') }}"
-                            width="200px" alt="image">
-                    @else
-                        <img class="mx-auto mb-5" src="" width="200px" alt="image">
-                    @endif
 
 
-
-                    <div class="w-100 mt-5 h-100">
-                        <div class="d-grid">
-                            <a class="btn btn-dark mb-3" style="color:rgb(70, 70, 70)" href="{{ route('home', ['id' => Auth::user()->id]) }}">Home</a>
-
-                            <a class="btn btn-dark mb-3" style="color:rgb(70, 70, 70)"
-                                href="{{ route('allUmkm') }}">UMKM</a>
-                            <a class="btn  btn-warning fw-bold btnHome  mb-3" href="{{ route('about') }}">About
-                                Us</a>
+@extends('layouts.app')
 
 
-                        </div>
+@section('content')
+
+    <div class="text-center h-screen bg-white">
 
 
-                    </div>
-                </div>
-
-                <div class="bottomContent">
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button class="btn btn-danger w-100 fw-bold btnReg border-0" type="submit">Logout</button>
-                    </form>
-                </div>
-
-            </div>
-
-            <div class="col rightContent bg-white h-100 ">
-                @include('layouts.nav')
-
-                <div class="row justify-content-center mt-5">
-                    <div class="col-md-8">
+                <div class="row justify-content-center m-auto">
+                    <div class="col-md-8 mt-5">
                         <div class="card shadow-lg p-3 mb-5 bg-body rounded">
                             <div class="card-body">
                                 <img src="{{ Vite::asset('resources/images/jawa_timur.png') }}" alt="image"
@@ -99,9 +37,6 @@
                     </div>
                 </div>
 
-            </div>
-
-        </div>
     </div>
 
 
@@ -179,6 +114,5 @@
     @vite('resources/js/app.js')
 
     @vite('resources/js/home.js')
-</body>
 
-</html>
+    @endsection
