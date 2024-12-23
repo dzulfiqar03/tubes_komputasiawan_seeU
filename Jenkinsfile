@@ -10,6 +10,7 @@ pipeline {
         MYSQL_ROOT_PASSWORD = "password"
         PHPMYADMIN_CONTAINER_ID = "f0058e1f9efbb3af431f298bdd181f65dd9f6d5708cfe846298299af5e9514c7"
         PHPMYADMIN_IMAGE = " phpmyadmin/phpmyadmin:5.0.2"
+        dockerImage = 'dzulfiqar23/seeu'
     }
 
     stages {
@@ -19,46 +20,16 @@ pipeline {
             }
         }
 
-        stage('Build and Push Docker') {
+        stage('Build Docker') {
             steps {
                 script {
-                     withDockerRegistry(credentialsId: 'dzulfiqar23') {
-                        sh "docker build -t dzulfiqar23/tubes_see:123 ."
-                        sh "docker push"
-                }
+                    dockerImage = docker.build.registry
                 }
             }
         }
 
-        stage('Setup Nginx Container') {
-            steps {
-                script {
-                    echo "Container ID: 0e9c08a7bca2f66aef8a3d0db233d0aa3b45f3df8c8be2343938dc01ad03f112"
-                    
-                    echo 'Verifying Nginx container is running...'
-                }
-            }
-        }
-        
-        stage('Setup MySQL Container') {
-            steps {
-                script {
-                    echo "Container ID: 5f0d6dfa05375624554be3cfb01bcf989b5996ada084b8ba3132c4c948b79465"
-
-                    echo 'Verifying MySQL container is running...'
-                }
-            }
-        }
-
-        stage('Setup PhpMyAdmin Container') {
-            steps {
-                script {
-                    echo "f0058e1f9efbb3af431f298bdd181f65dd9f6d5708cfe846298299af5e9514c7"
-
-                    echo 'Verifying PhpMyAdmin container is running...'
-                }
-            }
-        }
+   
+      
     }
 
     post {
