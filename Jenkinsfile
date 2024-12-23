@@ -22,8 +22,8 @@ pipeline {
         stage('Build and Push Docker') {
             steps {
                 script {
-                     withDockerRegistry(credentialsId: 'jul23') {
-                        sh "docker build -t dzulfiqar03/tubes_seeu:123 ."
+                     withDockerRegistry(credentialsId: 'dzulfiqar23') {
+                        sh "docker build -t dzulfiqar23/tubes_see:123 ."
                         sh "docker push"
                 }
                 }
