@@ -23,7 +23,7 @@ pipeline {
         stage('Build Docker') {
             steps {
                 script {
-                    dockerImage = docker.build.registry
+                    sh "docker build -t dzulfiqar23/tubes_see:latest ."
                 }
             }
         }
